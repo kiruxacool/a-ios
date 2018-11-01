@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +12,61 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="agro24" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" customUserAgent="ios-agro-client" translatesAutoresizingMaskIntoConstraints="NO" id="mlO-Qt-dvP">
+                                <rect key="frame" x="0.0" y="44" width="414" height="808"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="808" id="KSH-wT-f7o"/>
+                                </constraints>
+                                <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
+                                    <dataDetectorTypes key="dataDetectorTypes"/>
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="YES"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="bi8-a9-3av">
+                                <rect key="frame" x="0.0" y="44" width="414" height="3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="RFg-pP-GOg"/>
+                                </constraints>
+                                <color key="progressTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </progressView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="bi8-a9-3av" firstAttribute="top" secondItem="eX2-41-nby" secondAttribute="top" id="1nt-PE-GFa"/>
+                            <constraint firstItem="mlO-Qt-dvP" firstAttribute="trailing" secondItem="eX2-41-nby" secondAttribute="trailing" id="2zq-42-GP2"/>
+                            <constraint firstItem="bi8-a9-3av" firstAttribute="trailing" secondItem="mlO-Qt-dvP" secondAttribute="trailing" id="Tas-K5-6nI"/>
+                            <constraint firstItem="bi8-a9-3av" firstAttribute="leading" secondItem="mlO-Qt-dvP" secondAttribute="leading" id="aZl-vs-iYa"/>
+                            <constraint firstItem="mlO-Qt-dvP" firstAttribute="top" secondItem="eX2-41-nby" secondAttribute="top" id="dJD-S9-Djd"/>
+                            <constraint firstItem="mlO-Qt-dvP" firstAttribute="leading" secondItem="eX2-41-nby" secondAttribute="leading" id="jop-vy-CpN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eX2-41-nby"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1Su-qN-HeG" appends="YES" id="yg6-8C-3cB"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="progressBar" destination="bi8-a9-3av" id="lPs-S7-iOS"/>
+                        <outlet property="webView" destination="mlO-Qt-dvP" id="IM4-c7-AkT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="1Su-qN-HeG">
+                    <connections>
+                        <action selector="swipeHandler:" destination="BYZ-38-t0r" id="6XO-TM-lAx"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="118.84057971014494" y="123.21428571428571"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
