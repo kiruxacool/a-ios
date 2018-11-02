@@ -17,35 +17,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" customUserAgent="ios-agro-client" translatesAutoresizingMaskIntoConstraints="NO" id="mlO-Qt-dvP">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESD-56-Lne">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jw6-8H-NF7">
+                                        <rect key="frame" x="91.5" y="358" width="231" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Jw6-8H-NF7" secondAttribute="height" multiplier="37:16" id="v9k-Z2-0Bz"/>
+                                            <constraint firstAttribute="height" constant="100" id="vqB-it-2c0"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Jw6-8H-NF7" firstAttribute="centerX" secondItem="ESD-56-Lne" secondAttribute="centerX" id="AR6-Bl-Qa8"/>
+                                    <constraint firstItem="Jw6-8H-NF7" firstAttribute="centerY" secondItem="ESD-56-Lne" secondAttribute="centerY" constant="-40" id="X0S-r8-wyZ"/>
+                                </constraints>
+                            </view>
+                            <wkWebView hidden="YES" contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" customUserAgent="ios-agro-client" translatesAutoresizingMaskIntoConstraints="NO" id="mlO-Qt-dvP">
                                 <rect key="frame" x="0.0" y="44" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="808" id="KSH-wT-f7o"/>
                                 </constraints>
                                 <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
-                                    <dataDetectorTypes key="dataDetectorTypes"/>
+                                    <dataDetectorTypes key="dataDetectorTypes" none="YES"/>
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="YES"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="bi8-a9-3av">
                                 <rect key="frame" x="0.0" y="44" width="414" height="3"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="RFg-pP-GOg"/>
                                 </constraints>
-                                <color key="progressTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="progressTintColor" red="1" green="0.91003293734027535" blue="0.0016353240705125893" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                             </progressView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2w9-e5-rpE">
+                                <rect key="frame" x="188.5" y="533" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="bi8-a9-3av" firstAttribute="top" secondItem="eX2-41-nby" secondAttribute="top" id="1nt-PE-GFa"/>
                             <constraint firstItem="mlO-Qt-dvP" firstAttribute="trailing" secondItem="eX2-41-nby" secondAttribute="trailing" id="2zq-42-GP2"/>
+                            <constraint firstAttribute="bottom" secondItem="ESD-56-Lne" secondAttribute="bottom" id="3Lw-it-WQX"/>
+                            <constraint firstItem="2w9-e5-rpE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6WM-ep-cCo"/>
+                            <constraint firstItem="ESD-56-Lne" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="NhY-cn-3Zo"/>
+                            <constraint firstItem="eX2-41-nby" firstAttribute="bottom" secondItem="2w9-e5-rpE" secondAttribute="bottom" constant="292" id="Ra3-PE-ulx"/>
                             <constraint firstItem="bi8-a9-3av" firstAttribute="trailing" secondItem="mlO-Qt-dvP" secondAttribute="trailing" id="Tas-K5-6nI"/>
+                            <constraint firstItem="ESD-56-Lne" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xi0-r6-evl"/>
                             <constraint firstItem="bi8-a9-3av" firstAttribute="leading" secondItem="mlO-Qt-dvP" secondAttribute="leading" id="aZl-vs-iYa"/>
                             <constraint firstItem="mlO-Qt-dvP" firstAttribute="top" secondItem="eX2-41-nby" secondAttribute="top" id="dJD-S9-Djd"/>
+                            <constraint firstItem="ESD-56-Lne" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fTZ-ta-cEj"/>
                             <constraint firstItem="mlO-Qt-dvP" firstAttribute="leading" secondItem="eX2-41-nby" secondAttribute="leading" id="jop-vy-CpN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eX2-41-nby"/>
@@ -54,7 +80,9 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="progressBar" destination="bi8-a9-3av" id="lPs-S7-iOS"/>
+                        <outlet property="progressIndicator" destination="2w9-e5-rpE" id="AjQ-Ob-gQI"/>
+                        <outlet property="progressView" destination="bi8-a9-3av" id="oCO-Rr-y7Q"/>
+                        <outlet property="startView" destination="ESD-56-Lne" id="veF-mI-dAq"/>
                         <outlet property="webView" destination="mlO-Qt-dvP" id="IM4-c7-AkT"/>
                     </connections>
                 </viewController>
@@ -68,5 +96,8 @@
             <point key="canvasLocation" x="118.84057971014494" y="123.21428571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo.png" width="370" height="160"/>
+    </resources>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
