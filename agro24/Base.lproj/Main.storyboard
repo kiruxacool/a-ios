@@ -65,7 +65,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="RFg-pP-GOg"/>
                                 </constraints>
-                                <color key="progressTintColor" red="0.33445300193452748" green="0.96663594669496955" blue="0.44124435375641879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="progressTintColor" red="0.18823529411764706" green="0.30980392156862746" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2w9-e5-rpE">
                                 <rect key="frame" x="188.5" y="579.5" width="37" height="37"/>

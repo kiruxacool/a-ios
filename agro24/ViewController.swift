@@ -75,7 +75,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
             
             if let title = change[NSKeyValueChangeKey.newKey] as? String {
                 self.navigationItem.title = title
-                print(String(title))
+                //print(String(title))
             }
             return
         }
