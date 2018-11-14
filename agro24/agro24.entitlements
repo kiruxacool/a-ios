@@ -4,5 +4,11 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>webcredentials:agro24.ru</string>
+		<string>webcredentials:auth.agro24.ru</string>
+		<string>webcredentials:*.agro24.ru</string>
+	</array>
 </dict>
 </plist>

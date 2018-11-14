@@ -32,6 +32,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     open override func viewWillAppear(_ animated: Bool) {
         progressIndicator.startAnimating()
+        webView.becomeFirstResponder()
     }
     
     open override func viewDidLoad() {
@@ -183,7 +184,9 @@ extension ViewController: WKUIDelegate {
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        progressView.isHidden = false
+        if (didWebViewLoaded == true) {
+            progressView.isHidden = false
+        }
     }
 
 //    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
