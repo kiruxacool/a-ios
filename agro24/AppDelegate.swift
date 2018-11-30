@@ -7,6 +7,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var remoteConfig: RemoteConfig?
     let gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication,
@@ -17,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [START set_messaging_delegate]
         Messaging.messaging().delegate = self
         Messaging.messaging().shouldEstablishDirectChannel = true
+        
+        //Init RemoteConfig
+        let _ = RCValues.sharedInstance
         // [END set_messaging_delegate]
         // Register for remote notifications. This shows a permission dialog on first run, to
         // show the dialog at a more appropriate time move this registration accordingly.

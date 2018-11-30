@@ -9,6 +9,7 @@ target 'agro24' do
   # Pods for agro24
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
+pod 'Firebase/RemoteConfig'
 
   target 'agro24Tests' do
     inherit! :search_paths

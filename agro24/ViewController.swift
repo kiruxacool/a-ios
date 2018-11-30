@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import Foundation
+import Firebase
 
 var myContext = 0
 
@@ -21,7 +22,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet var progressIndicator: UIActivityIndicatorView!
     @IBOutlet var navBar: UINavigationItem!
     
-    
+    var remoteConfig: RemoteConfig?
     var popupWebView: WKWebView?
     var mainUrl = URL(string: "https://agro24.ru/")!
     var theBool: Bool = false
@@ -36,6 +37,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     open override func viewDidLoad() {
+        let _ = RCValues.sharedInstance.getStartPage()!
+       // self.mainUrl = URL(string: sp) ??
      
         super.viewDidLoad()
         
@@ -134,10 +137,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
 //    }
     
     func loadWebView() {
-        let urlRequest = URLRequest(url: mainUrl)
+            let urlRequest = URLRequest(url: self.mainUrl)
             webView.load(urlRequest)
-        
-        
     }
     
     func showWebView() {
@@ -288,4 +289,3 @@ extension ViewController: WKUIDelegate {
 //    }
 //}
 //
-
