@@ -41,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerForRemoteNotifications()
         
+       // self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //self.window?.rootViewController = UINavigationController(rootViewController: ViewController())
+       // self.window?.makeKeyAndVisible()
+        
         // [END register_for_notifications]
         return true
     }

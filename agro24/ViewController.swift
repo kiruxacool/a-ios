@@ -14,13 +14,49 @@ import Firebase
 var myContext = 0
 
 class ViewController: UIViewController, WKNavigationDelegate {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard let body = message.body as? [String: Any] else {
+            print("could not convert message body to dictionary: \(message.body)")
+            return
+        }
+        
+        guard let type = body["type"] as? String else {
+            print("could not convert body[\"type\"] to string: \(body)")
+            return
+        }
+        
+        switch type {
+        case "outerHTML":
+            guard let outerHTML = body["outerHTML"] as? String else {
+                print("could not convert body[\"outerHTML\"] to string: \(body)")
+                return
+            }
+            print("outerHTML is \(outerHTML)")
+        default:
+            print("unknown message type \(type)")
+            return
+        }
+    }
+    
     
  
     @IBOutlet var progressView: UIProgressView!
     @IBOutlet var webView: WKWebView!
     @IBOutlet var startView: UIView!
     @IBOutlet var progressIndicator: UIActivityIndicatorView!
+    @IBOutlet var navBarPanel: UINavigationBar!
     @IBOutlet var navBar: UINavigationItem!
+    
+    @IBOutlet var backButton: UIBarButtonItem!
+    
+    @IBAction func backButton(_ sender: Any) {
+        webView.goBack()
+    }
+    
+    @IBAction func rightButton(_ sender: Any) {
+        callNumber(phoneNumber: "+74951210000")
+    }
+    
     
     var remoteConfig: RemoteConfig?
     var popupWebView: WKWebView?
@@ -31,6 +67,17 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     
     
+    private func callNumber(phoneNumber:String) {
+        
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     open override func viewWillAppear(_ animated: Bool) {
         progressIndicator.startAnimating()
         webView.becomeFirstResponder()
@@ -38,26 +85,34 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     open override func viewDidLoad() {
         let _ = RCValues.sharedInstance.getStartPage()!
-       // self.mainUrl = URL(string: sp) ??
-     
         super.viewDidLoad()
         
         webView.navigationDelegate = self as WKNavigationDelegate
         webView.uiDelegate = self as WKUIDelegate
         webView.addObserver(self, forKeyPath: "title", options: .new, context: &myContext)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: &myContext)
+       // webView.addObserver(self, forKeyPath: "loading", options: .new, context: &myContext)
 
+        
+        
         loadWebView()
     
-        navBar.hidesBackButton = false
-        navBar.leftBarButtonItem?.isEnabled = true
-        navBar.leftBarButtonItem?.action = #selector(back)
         
-    
-        //navBar.backBarButtonItem.hi
+//        navBar.leftBarButtonItem?.isEnabled = true
+//        navBar.leftBarButtonItem?.action = #selector(back)
+//
+//        let newBtn = UIBarButtonItem(title: "new", style: .plain, target: self, action: #selector(back))
+//        self.navBar.leftItemsSupplementBackButton = true
+//        self.navBar.leftBarButtonItem = newBtn//self.navigationItem.leftBarButtonItems = [newBtn,anotherBtn]
+//        self.navBar.backBarButtonItem = newBtn
+//        self.navBar.setLeftBarButton(newBtn, animated: true)
+//
+        
+        //navBar.backBarButtonItem?.style
+        
+        
     }
     
-//
     @objc public func back(sender: UIBarButtonItem) {
         if(webView.canGoBack) {
             webView.goBack()
@@ -75,14 +130,27 @@ class ViewController: UIViewController, WKNavigationDelegate {
             return
         }
         
-        if keyPath == "title" {
-            
-            if let title = change[NSKeyValueChangeKey.newKey] as? String {
-                self.navigationItem.title = title
-                //print(String(title))
-            }
-            return
-        }
+//        let jsString = "function a(){return $('#ag-header-main > div.header__level.-second > div > div > ul > li.-active > a > span').text()}; a();"
+//        webView.evaluateJavaScript(jsString, completionHandler: { (innerHTML, error ) in
+//            self.setTitle(title: innerHTML, error: error)
+//        })
+//
+//        if (keyPath == "loading") {
+//            backButton.isEnabled = webView.canGoBack
+//            return
+//        }
+//
+//        if keyPath == "title" {
+//
+//            if let title = change[NSKeyValueChangeKey.newKey] as? String {
+//                self.navigationItem.title = title
+//
+//
+//
+//                //print(String(title))
+//            }
+//            return
+//        }
         if keyPath == "estimatedProgress" {
             if let progress = (change[NSKeyValueChangeKey.newKey] as AnyObject).floatValue {
                 progressView.progress = progress;
@@ -93,48 +161,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
             }
             return
         }
+        return
     }
-    
-    
-    
-    
-    
-    
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//     //   progressBar?.setProgress(1, animated: true)
-//
-//        print("end")
-//    }
-//
-    
-//
-//    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-//
-//        progressBar?.setProgress(0, animated: true)
-//    }
-//
-//
-//   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//
-//       progressBar?.setProgress(100, animated: true)
-//    }
-//
-    
-//    func setupWebView() {
-//        let preferences = WKPreferences()
-//        preferences.javaScriptEnabled = true
-//        preferences.javaScriptCanOpenWindowsAutomatically = true
-//
-//        let configuration = WKWebViewConfiguration()
-//        configuration.preferences = preferences
-//
-//        webView = WKWebView(frame: view.bounds, configuration: configuration)
-//        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        webView.uiDelegate = self
-//        webView.navigationDelegate = self
-//
-//        view.addSubview(webView)
-//    }
     
     func loadWebView() {
             let urlRequest = URLRequest(url: self.mainUrl)
@@ -149,35 +177,25 @@ class ViewController: UIViewController, WKNavigationDelegate {
             startView.isHidden = true
             webView.isHidden = false
             didWebViewLoaded = true
+            //navBarPanel.isHidden = false
         }
         
+    }
+    
+    func setTitle(title: Any?, error: Error?) -> Void {
+        if(title != nil) {
+            let title = title as! String
+            if(title != "") {
+                self.navBar.title = title
+            } 
+        }
+             
     }
     
   
 }
 
 extension ViewController: WKUIDelegate {
-    
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//
-//        if let url = navigationAction.request.url {
-//            if url.absoluteString.contains("/something") {
-//                // if url contains something; take user to native view controller
-//                //Routing.showAnotherVC(fromVC: self)
-//                decisionHandler(.cancel)
-//            } else if url.absoluteString.contains("done") {
-//                //in case you want to stop user going back
-//                //hideBackButton()
-//                //addDoneButton()
-//                decisionHandler(.allow)
-//            } else if url.absoluteString.contains("AuthError") {
-//                //in case of erros, show native allerts
-//            }
-//            else{
-//                decisionHandler(.allow)
-//            }
-//        }
-//    }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         progressView.isHidden = true
@@ -190,41 +208,7 @@ extension ViewController: WKUIDelegate {
         }
     }
 
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        progressBar?.setProgress(100, animated: true)
-//    }
-//
-//    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-//        progressBar?.setProgress(100, animated: true)
-//    }
-    
-    
-//}
-//
-//    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//
-//        if navigationAction.navigationType == .linkActivated {
-//            print("navi start")
-//
-//         //  progressBar?.setProgress(0, animated: false)
-//        }
-//
-//        if navigationAction.navigationType == .formSubmitted {
-//            print("form start")
-//            //progressBar?.setProgress(0, animated: false)
-//        }
-//
-//        if navigationAction.navigationType == .other {
-//            print("other start")
-//            //progressBar?.setProgress(0, animated: false)
-//        }
-//
-//         decisionHandler(.allow)
-//
-//    }
 
-    
-//
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
 
@@ -242,7 +226,7 @@ extension ViewController: WKUIDelegate {
             print("opened")
             print(UIApplication.shared.canOpenURL(url!))
             UIApplication.shared.open(url!)
-            decisionHandler(.cancel)
+            decisionHandler(.allow)
             return
         }
         
@@ -289,3 +273,5 @@ extension ViewController: WKUIDelegate {
 //    }
 //}
 //
+
+

@@ -45,6 +45,8 @@
 		ED8389DD21AEA8110053E816 /* icon_40pt copy.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8389C921AEA8110053E816 /* icon_40pt copy.png */; };
 		ED8389DE21AEA8110053E816 /* icon_83.5@2x copy.png in Resources */ = {isa = PBXBuildFile; fileRef = ED8389CA21AEA8110053E816 /* icon_83.5@2x copy.png */; };
 		ED89035C219DCEED00705C73 /* RCValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED89035B219DCEED00705C73 /* RCValues.swift */; };
+		EDAC7E9421B9576F001F83D9 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EDAC7E9321B9576F001F83D9 /* back.png */; };
+		EDAC7E9621B95DB6001F83D9 /* call-answer-ios-7-interface-symbol_318-34776.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDAC7E9521B95DB6001F83D9 /* call-answer-ios-7-interface-symbol_318-34776.jpg */; };
 		EDBAC22F218A13B0003FF1BD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBAC22E218A13B0003FF1BD /* Launch Screen.storyboard */; };
 		EDBAC234218B138F003FF1BD /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EDBAC233218B138F003FF1BD /* logo.png */; };
 /* End PBXBuildFile section */
@@ -117,6 +119,8 @@
 		ED8389C921AEA8110053E816 /* icon_40pt copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_40pt copy.png"; sourceTree = "<group>"; };
 		ED8389CA21AEA8110053E816 /* icon_83.5@2x copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_83.5@2x copy.png"; sourceTree = "<group>"; };
 		ED89035B219DCEED00705C73 /* RCValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCValues.swift; sourceTree = "<group>"; };
+		EDAC7E9321B9576F001F83D9 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		EDAC7E9521B95DB6001F83D9 /* call-answer-ios-7-interface-symbol_318-34776.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "call-answer-ios-7-interface-symbol_318-34776.jpg"; sourceTree = "<group>"; };
 		EDBAC22E218A13B0003FF1BD /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "agro24/Launch Screen.storyboard"; sourceTree = SOURCE_ROOT; };
 		EDBAC233218B138F003FF1BD /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = AppIcon.appiconset/logo.png; sourceTree = "<group>"; };
 		F3CFEF0A12361DF08F14F3D9 /* Pods-agro24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-agro24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-agro24UITests/Pods-agro24UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 		ED2D3B12219DC03200C6E955 /* footer_icons */ = {
 			isa = PBXGroup;
 			children = (
+				EDAC7E9521B95DB6001F83D9 /* call-answer-ios-7-interface-symbol_318-34776.jpg */,
+				EDAC7E9321B9576F001F83D9 /* back.png */,
 				ED2D3B13219DC03200C6E955 /* auctions.png */,
 				ED2D3B14219DC03200C6E955 /* deals.png */,
 				ED2D3B15219DC03200C6E955 /* myrequest.png */,
@@ -411,6 +417,7 @@
 				ED8389D421AEA8110053E816 /* icon_20pt@3x copy.png in Resources */,
 				ED8389CF21AEA8110053E816 /* icon_20pt@2x copy.png in Resources */,
 				ED4B222D2182160200BA22C9 /* Main.storyboard in Resources */,
+				EDAC7E9621B95DB6001F83D9 /* call-answer-ios-7-interface-symbol_318-34776.jpg in Resources */,
 				ED8389DB21AEA8110053E816 /* icon_76pt@2x copy.png in Resources */,
 				ED2D3B18219DC03200C6E955 /* auctions.png in Resources */,
 				ED8389CE21AEA8110053E816 /* icon_76pt copy.png in Resources */,
@@ -420,6 +427,7 @@
 				ED2D3B19219DC03200C6E955 /* deals.png in Resources */,
 				ED2D3B1C219DC03200C6E955 /* other.png in Resources */,
 				ED2D3B11219DBD2300C6E955 /* icons_png in Resources */,
+				EDAC7E9421B9576F001F83D9 /* back.png in Resources */,
 				ED8389D721AEA8110053E816 /* icon_57pt copy.png in Resources */,
 				ED8389DC21AEA8110053E816 /* icon_72pt@2x copy.png in Resources */,
 				ED8389D121AEA8110053E816 /* icon_60pt@3x copy.png in Resources */,
