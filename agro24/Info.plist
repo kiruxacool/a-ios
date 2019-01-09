@@ -22,6 +22,14 @@
 	<string>1.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>agro24</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>ru.agro24.app.ios.webview</string>
+		</dict>
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>

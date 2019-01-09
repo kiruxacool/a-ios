@@ -96,6 +96,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // With swizzling disabled you must set the APNs token here.
          Messaging.messaging().apnsToken = deviceToken
     }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        print("URL")
+        print(url.host as Any)
+        print(url.path)
+    
+        return true
+    }
 }
 
 // [START ios_10_message_handling]
@@ -148,6 +156,14 @@ extension AppDelegate : MessagingDelegate {
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
+        //сохраняем в память токен
+        let defaults = UserDefaults.standard
+        defaults.set(fcmToken, forKey: "fcmtokenstring")
+        
+        
+       
+        
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }

@@ -130,6 +130,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
             return
         }
         
+        // Getting
+        
+        
+        
+        
+        
+        
 //        let jsString = "function a(){return $('#ag-header-main > div.header__level.-second > div > div > ul > li.-active > a > span').text()}; a();"
 //        webView.evaluateJavaScript(jsString, completionHandler: { (innerHTML, error ) in
 //            self.setTitle(title: innerHTML, error: error)
@@ -177,6 +184,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
             startView.isHidden = true
             webView.isHidden = false
             didWebViewLoaded = true
+            self.setToken()
             //navBarPanel.isHidden = false
         }
         
@@ -190,6 +198,17 @@ class ViewController: UIViewController, WKNavigationDelegate {
             } 
         }
              
+    }
+    
+    func setToken() {
+        let defaults = UserDefaults.standard
+        if let fcmToken = defaults.string(forKey: "fcmtokenstring") {
+            let jsString = "function a() {agro_globals.registerDeviceToken('\(fcmToken)', 2)}; a();";
+            webView.evaluateJavaScript(jsString, completionHandler: { (innerHTML, error ) in
+                            print(error)
+                        })
+            print("token set \(fcmToken)")
+        }
     }
     
   
