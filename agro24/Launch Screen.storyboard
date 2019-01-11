@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="center" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jw6-8H-NF7">
-                                <rect key="frame" x="91.5" y="358" width="231" height="100"/>
+                                <rect key="frame" x="72" y="221.5" width="231" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Jw6-8H-NF7" secondAttribute="height" multiplier="37:16" id="v9k-Z2-0Bz"/>
                                     <constraint firstAttribute="height" constant="100" id="vqB-it-2c0"/>
@@ -29,7 +29,7 @@
                         <color key="backgroundColor" red="0.070809341967105865" green="0.48836237192153931" blue="0.88287395238876343" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Jw6-8H-NF7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="Gly-Xy-3jl"/>
+                            <constraint firstItem="Jw6-8H-NF7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-62" id="Gly-Xy-3jl"/>
                             <constraint firstItem="Jw6-8H-NF7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HbR-2i-IbE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
