@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         Messaging.messaging().shouldEstablishDirectChannel = true
         
+//        handle open from notification
+       
+        
+        
         //Init RemoteConfig
         let _ = RCValues.sharedInstance
         // [END set_messaging_delegate]
@@ -41,6 +45,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerForRemoteNotifications()
         
+        let remoteNotif = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any]
+        if remoteNotif != nil {
+            let aps = remoteNotif!["url"] as? String
+            let destinationViewController = self.window?.rootViewController as? ViewController
+            destinationViewController?.mainUrl = URL(string: aps ?? "https://agro24")!
+            
+        }
+        else {
+            print("//////////////////////////Normal launch")
+        }
        // self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         //self.window?.rootViewController = UINavigationController(rootViewController: ViewController())
        // self.window?.makeKeyAndVisible()
@@ -58,11 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("1 Message ID: \(messageID)")
         }
         
         // Print full message.
-        print(userInfo)
+        //print(userInfo["url"])
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -74,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("2 Message ID: \(messageID)")
         }
         
         // Print full message.
@@ -99,9 +113,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         print("URL")
-        print(url.host as Any)
         print(url.path)
-    
+        print(url)
+
+        let destinationViewController = self.window?.rootViewController as? ViewController
+        destinationViewController?.loadWebViewWithUrl(url: String("https://agro24.ru" + url.path))
+        
         return true
     }
 }
@@ -120,7 +137,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
          Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            //когда открыто приложение
+            print("3 Message ID: \(messageID)")
         }
         
         // Print full message.
@@ -136,7 +154,16 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            //когда свернуто приложение
+            print("4 Message ID: \(messageID)")
+            
+            let aps = userInfo["url"] as? String
+            if aps != nil {
+                let destinationViewController = self.window?.rootViewController as? ViewController
+                destinationViewController?.loadWebViewWithUrl(url: aps ?? "https://agro24.ru")
+            }
+            
+            
         }
         
         // Print full message.
@@ -160,9 +187,6 @@ extension AppDelegate : MessagingDelegate {
         //сохраняем в память токен
         let defaults = UserDefaults.standard
         defaults.set(fcmToken, forKey: "fcmtokenstring")
-        
-        
-       
         
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.

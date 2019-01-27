@@ -60,7 +60,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     var remoteConfig: RemoteConfig?
     var popupWebView: WKWebView?
-    var mainUrl = URL(string: "https://agro24.ru/")!
+    public var mainUrl = URL(string: "https://agro24.ru/")!
     var theBool: Bool = false
     var myTimer: Timer?
     var didWebViewLoaded: Bool = false
@@ -147,17 +147,17 @@ class ViewController: UIViewController, WKNavigationDelegate {
 //            return
 //        }
 //
-//        if keyPath == "title" {
-//
-//            if let title = change[NSKeyValueChangeKey.newKey] as? String {
-//                self.navigationItem.title = title
-//
-//
-//
-//                //print(String(title))
-//            }
-//            return
-//        }
+        if keyPath == "title" {
+
+            if let title = change[NSKeyValueChangeKey.newKey] as? String {
+                //self.navigationItem.title = title
+
+
+
+                print(String(title))
+            }
+            return
+        }
         if keyPath == "estimatedProgress" {
             if let progress = (change[NSKeyValueChangeKey.newKey] as AnyObject).floatValue {
                 progressView.progress = progress;
@@ -174,6 +174,12 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func loadWebView() {
             let urlRequest = URLRequest(url: self.mainUrl)
             webView.load(urlRequest)
+    }
+    
+    public func loadWebViewWithUrl(url: String) {
+        let newUrl = URL(string: url)!
+        let urlRequest = URLRequest(url: newUrl)
+        webView.load(urlRequest)
     }
     
     func showWebView() {
@@ -203,7 +209,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func setToken() {
         let defaults = UserDefaults.standard
         if let fcmToken = defaults.string(forKey: "fcmtokenstring") {
-            let jsString = "function a() {agro_globals.registerDeviceToken('\(fcmToken)', 2)}; a();";
+            let jsString = "function a() {agro_globals.registerDeviceToken('\(fcmToken)', 1)}; a();";
             webView.evaluateJavaScript(jsString, completionHandler: { (innerHTML, error ) in
                             print(error)
                         })
